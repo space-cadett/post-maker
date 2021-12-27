@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" style="background-image: url('../static/image/earth.jpg');background-attachment: fixed;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geek Corner</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="mb-10 top-1 w-screen flex flex-col justify-center items-center">
+        <img src="../static/image/logo.png" class="w-64 h-64" alt="Logo Image">
+    </div>
+    <div>
+        <div class="bottom-6 m-auto relative justify-center" id="container" style="width:614px; height:700px;">
+            <img id="bg" src="" alt=" "">
+            <span class=" font-mono text-lg absolute text-white whitespace-pre-line text-justify" id="News"
+            style="width: 450px; top: 100px; left: 70px; line-height: 2em;">{{News|safe}}</span>
+        </div>
+
+        <div id="canvasWrapper" class="mb-10 w-screen flex justify-center items-center">
+            <button
+                class="bg-transparent hover:bg-white-500 text-white-700 font-semibold hover:text-white py-2 px-4 border border-white-500 hover:border-transparent rounded"
+                onclick="download()">Download Post
+            </button>
+        </div>
+
+        <div class="flex justify-center">
+            <p class="text-base text-gray-400">
+              Refresh to change backgroud 
+            </p>
+          </div>
+
+        <script>
+            var newbg = document.getElementById("bg");
+            var background = new Image();
+            background.src = "static/image/" + (Math.floor(Math.random() * (7)) + 1) + ".png";
+            newbg.src = background.src;
+        </script>
+
+<script src="/static/js/h2c.min.js"></script>
+<script>
+    function download() {
+        html2canvas(document.getElementById("container"), { height: 700, width: 614 }).then(canvas => {
+            //document.body.appendChild(canvas);
+            var a = document.createElement('a');
+            a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+            a.download = 'somefilename.jpg';
+            a.click();
+        });
+    }
+</script>
+    </div>  
+</body>
+</html>
