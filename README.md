@@ -1,4 +1,6 @@
-# post-maker
+# Social media post-maker
+
+[learnig purpose]
 
 _Daily social media post genrator_
 
